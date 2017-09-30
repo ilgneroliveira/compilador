@@ -50,8 +50,8 @@ public class TabelaDeSimbolos {
     public static int MAIOR_IGUAL = 35;
     public static int MENOR_IGUAL = 36;
     public static int MULTIPLICACAO = 37;
-    public static int BEGIN = 38;
-    public static int END = 39;
+    public static int CHAVE_ABRE = 38;
+    public static int CHAVE_FECHA = 39;
     public static int READLN = 40;
     public static int WRITE = 41;
     public static int WRITELN = 42;
@@ -77,8 +77,8 @@ public class TabelaDeSimbolos {
         inserir(VIRGULA, ",");
         inserir(COLCHETES, "[");
         inserir(COLCHETES, "]");
-        inserir(CHAVES, "{");
-        inserir(CHAVES, "}");
+        inserir(CHAVE_ABRE, "{");
+        inserir(CHAVE_FECHA, "}");
         inserir(MAIS, "+");
         inserir(MENOS, "-");
         inserir(ASPAS_DUPLAS, "\"");
@@ -105,8 +105,6 @@ public class TabelaDeSimbolos {
         inserir(MAIOR_IGUAL, ">=");
         inserir(MENOR_IGUAL, "<=");
         inserir(MULTIPLICACAO, "*");
-        inserir(BEGIN, "begin");
-        inserir(END, "end");
         inserir(READLN, "readln");
         inserir(WRITE, "write");
         inserir(WRITELN, "writeln");

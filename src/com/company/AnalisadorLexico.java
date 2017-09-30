@@ -40,17 +40,20 @@ public class AnalisadorLexico {
                     } else if (c.equals("/")) {
                         estado = "2";
                         lexema += c;
-                    } else if (c.equals("{")) {
-                        estado = "10";
+                    } else if (c.equals("{") || c.equals("}")) {
+                        estado = "F";
+                        lexema += c;
                     } else if (c.equals("\"")) {
                         estado = "11";
-                        lexema += c;
                     } else if (c.equals("(") || c.equals(")") || c.equals(",") || c.equals("+")
-                            || c.equals("-") || c.equals("*") || c.equals(";")) {
+                            || c.equals("-") || c.equals("*") || c.equals(";") || c.equals(":") || c.equals(".")) {
                         estado = "F";
                         lexema += c;
                     } else if (c.matches("[0]*")) {
                         estado = "7";
+                        lexema += c;
+                    } else if (c.equals("!")) {
+                        estado = "12";
                         lexema += c;
                     } else {
                         if (!c.equals("\n") && !c.equals(" ") && !c.equals("\r") && !c.equals("\t")) {
@@ -147,18 +150,19 @@ public class AnalisadorLexico {
                         lexema += c;
                     }
                     break;
-                case "10":
-                    if (c.equals("}")) {
-                        estado = "I";
-                    } else {
-                        estado = "10";
-                    }
-                    break;
+//                case "10":
+//                    if (c.equals("}")) {
+//                        estado = "I";
+//                    } else {
+//                        estado = "10";
+//                    }
+//                    break;
                 case "11":
                     if (c.equals("\"")) {
-                        estado = "I";
-                    } else {
-                        estado = "10";
+                        estado = "F";
+                    }else {
+                        estado = "11";
+                        lexema += c;
                     }
                     break;
                 default:
@@ -198,8 +202,10 @@ public class AnalisadorLexico {
             }
         } catch (FileNotFoundException ex) {
             System.out.println("Arquivo fonte não encontrado: " + ex.getMessage());
+            System.exit(0);
         } catch (IOException ex) {
             System.out.println("Erro ao ler arquivo fonte: " + ex.getMessage());
+            System.exit(0);
         }
 
         AnalisadorLexico.setCodigoFonte(codigoFonte.toCharArray());
